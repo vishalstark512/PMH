@@ -1,0 +1,8 @@
+torch>=2.0
+timm>=0.9
+torchvision>=0.15
+numpy>=1.24
+tqdm>=4.65
+datasets>=2.14
+huggingface_hub>=0.20
+Pillow>=9.0

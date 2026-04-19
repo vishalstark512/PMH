@@ -1,0 +1,8 @@
+torch>=1.12
+torchvision>=0.13
+numpy
+Pillow
+scipy
+tqdm
+matplotlib>=3.5
+gdown>=4.6
