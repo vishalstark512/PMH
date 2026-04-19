@@ -1,0 +1,96 @@
+% figA5_crossdomain.tex — Figure A5: Cross-domain mechanistic evidence
+% \input{figures/figA5_crossdomain}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.31\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={T01,T02},
+  xtick=data,
+  xticklabels={T01 (CIFAR-10), T02 (Graph)},
+  xticklabel style={font=\footnotesize, rotate=12, anchor=east},
+  ylabel={Embedding drift at $\sigma{=}0.1$},
+  ymin=0, ymax=0.82,
+  legend pos=north east,
+  width=0.88\linewidth, height=5.5cm,
+  bar width=4.5pt,
+]
+\addplot[fill=colB0,   draw=none] coordinates {(T01,0.692)(T02,0.375)};
+\addlegendentry{B0}
+\addplot[fill=colVAT,  draw=none] coordinates {(T01,0.699)(T02,0.304)};
+\addlegendentry{VAT}
+\addplot[fill=colPMH,  draw=none] coordinates {(T01,0.385)(T02,0.021)};
+\addlegendentry{E1 (PMH)}
+\node[font=\tiny, color=colPMH] at (axis cs:T02,0.12) {18$\times$ lower};
+\end{axis}
+\end{tikzpicture}
+\caption{Embedding drift.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.34\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={S1,S2,S3,S4},
+  xtick=data,
+  xlabel={ResNet stage},
+  ylabel={Stage drift (lower $=$ better)},
+  ymin=0, ymax=14.5,
+  legend pos=north west,
+  width=0.88\linewidth, height=5.5cm,
+  bar width=3.5pt,
+]
+\addplot[fill=colB0,    draw=none]
+  coordinates {(S1,1.82)(S2,1.59)(S3,1.92)(S4,12.68)};
+\addlegendentry{B0}
+\addplot[fill=colVAT,   draw=none]
+  coordinates {(S1,1.67)(S2,0.82)(S3,0.75)(S4,11.89)};
+\addlegendentry{VAT}
+\addplot[fill=colNoPMH, draw=none]
+  coordinates {(S1,0.66)(S2,0.42)(S3,0.50)(S4,3.28)};
+\addlegendentry{E1 no PMH}
+\addplot[fill=colPMH,   draw=none]
+  coordinates {(S1,0.66)(S2,0.42)(S3,0.50)(S4,3.34)};
+\addlegendentry{E1 (PMH)}
+\node[font=\tiny\bfseries, color=colRed, align=right, anchor=north east]
+  at (rel axis cs:0.99,0.97) {S4: VAT/PMH\\$3.6\times$};
+\end{axis}
+\end{tikzpicture}
+\caption{Stage-wise drift T07 (ResNet).}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.31\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={B0,VAT,{E1 no PMH},{E1 (PMH)}},
+  xtick=data,
+  xticklabel style={font=\footnotesize, rotate=20, anchor=east},
+  ylabel={Saliency cosine similarity $\uparrow$},
+  ymin=0.44, ymax=0.78,
+  width=0.85\linewidth, height=5.5cm,
+  bar width=6pt,
+  nodes near coords,
+  nodes near coords style={font=\tiny, anchor=south},
+  point meta=rawy,
+  every node near coord/.append style={
+    /pgf/number format/fixed,
+    /pgf/number format/precision=3},
+]
+\addplot[fill=colB0, draw=none]
+  coordinates {(B0,0.530)(VAT,0.668)({E1 no PMH},0.717)({E1 (PMH)},0.718)};
+\end{axis}
+\end{tikzpicture}
+\caption{Saliency stability T07.}
+\end{subfigure}
+\caption{\textbf{Cross-domain mechanistic evidence.}
+\emph{(a)} Embedding drift at $\sigma{=}0.1$: PMH reduces drift 44\% vs.\ VAT on T01
+and 18$\times$ on T02 (graph), the largest reduction of any task.
+\emph{(b)} Stage-wise drift on T07: B0/VAT show catastrophic Stage~4 drift ($>$11);
+PMH reduces it $3.6\times$.
+\emph{(c)} Saliency stability on T07: PMH achieves the highest cosine similarity (0.718),
+confirming attentional consistency under perturbation.}
+\label{fig:a5}
+\end{figure*}

@@ -1,0 +1,46 @@
+% pmh_style.tex — shared colours and pgfplots styles for all PMH figures
+% \input{pmh_style} in your main preamble (after loading pgfplots, tikz, xcolor)
+
+%% ── Colour palette ──────────────────────────────────────────────────────────
+\definecolor{colB0}{RGB}{136,135,128}       % gray   — B0 (ERM)
+\definecolor{colVAT}{RGB}{216,90,48}        % coral  — VAT
+\definecolor{colPGD2}{RGB}{212,83,126}      % pink   — PGD-2/255
+\definecolor{colPGD4}{RGB}{180,50,100}      % dark pink — PGD-4/255
+\definecolor{colNoPMH}{RGB}{99,140,28}      % green  — E1 no PMH
+\definecolor{colPMH}{RGB}{55,138,221}       % blue   — E1 (PMH)
+\definecolor{colPMHlight}{RGB}{181,212,244} % light blue — fill/secondary
+\definecolor{colRed}{RGB}{226,75,74}        % red    — danger / worst
+\definecolor{colGreen}{RGB}{15,110,86}      % dark green — success / repair
+
+%% ── Shared pgfplots styles ──────────────────────────────────────────────────
+\pgfplotsset{
+  pmh base/.style={
+    width=0.92\linewidth, height=5.5cm,
+    tick label style={font=\small},
+    label style={font=\small},
+    legend style={font=\footnotesize, draw=none, fill=none,
+                  at={(0.02,0.98)}, anchor=north west},
+    grid=both,
+    grid style={line width=0.3pt, draw=gray!20},
+    minor grid style={draw=none},
+    line width=0.8pt,
+    mark size=1.8pt,
+  },
+  pmh bar/.style={
+    pmh base,
+    ybar, bar width=5pt,
+    enlarge x limits=0.15,
+    xtick align=inside,
+  },
+  pmh hbar/.style={
+    pmh base,
+    xbar, bar width=5pt,
+    enlarge y limits=0.15,
+  },
+}
+
+%% ── TikZ arrow marker (consistent across all TikZ figures) ─────────────────
+% Use \pmharrow in TikZ scopes: \draw[-{pmharrow}] ...
+\tikzset{
+  pmharrow/.tip={Latex[length=4pt,width=3pt]},
+}

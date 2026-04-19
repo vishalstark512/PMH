@@ -1,0 +1,63 @@
+% figA6_reid.tex — Figure A6: Re-ID results
+% \input{figures/figA6_reid}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={B0,VAT,{E1 (PMH)}},
+  xtick=data,
+  xticklabel style={font=\small},
+  ylabel={Rank-1 accuracy (\%)},
+  ymin=0, ymax=92,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=2,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=7pt,
+]
+\addplot[fill=colPMHlight, draw=none]
+  coordinates {(B0,65.65)(VAT,71.17)({E1 (PMH)},67.81)};
+\addlegendentry{Clean}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(B0,43.02)(VAT,65.80)({E1 (PMH)},63.74)};
+\addlegendentry{Avg-shift rank-1}
+\end{axis}
+\end{tikzpicture}
+\caption{Clean vs.\ avg-shift rank-1.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={B0,VAT,{E1 (PMH)}},
+  xtick=data,
+  xticklabel style={font=\small},
+  ylabel={Rank-1 accuracy / drop (\%)},
+  ymin=0, ymax=86,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=2,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=7pt,
+]
+\addplot[fill=colPMHlight, draw=none]
+  coordinates {(B0,4.45)(VAT,57.51)({E1 (PMH)},53.33)};
+\addlegendentry{Worst-shift rank-1}
+\addplot[fill=colRed, draw=none]
+  coordinates {(B0,61.19)(VAT,13.66)({E1 (PMH)},14.49)};
+\addlegendentry{Worst-case drop}
+\node[font=\tiny, color=colPMH, align=center] at (axis cs:{E1 (PMH)},22)
+  {PMH: lower drop};
+\end{axis}
+\end{tikzpicture}
+\caption{Worst-shift and worst-case drop.}
+\end{subfigure}
+\caption{\textbf{Task~06 Re-ID (replicated).}
+\emph{(a)} Average-shift rank-1: VAT 65.80, E1 (PMH) 63.74, B0 43.02 (VAT highest).
+\emph{(b)} Worst-case rank-1 drop from clean: B0 61.19, E1 (PMH) 14.49, VAT 13.66
+(lowest drop for VAT). Worst-shift rank-1 remains hardest under Gaussian noise
+(Table~\ref{tab:a8_reid}).}
+\label{fig:a6}
+\end{figure*}

@@ -1,0 +1,6 @@
+torch>=2.0
+torchvision
+numpy
+Pillow
+matplotlib
+# Human3.6M / pose datasets: add when needed (e.g. h5py, opencv-python)

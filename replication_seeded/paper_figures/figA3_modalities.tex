@@ -1,0 +1,80 @@
+% figA3_modalities.tex — Figure A3: TDI across modalities
+% \input{figures/figA3_modalities}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.40\textwidth}
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  dot/.style={circle, fill, inner sep=1.6pt},
+]
+\node[font=\small\bfseries] at (-1.8,3.05) {ERM};
+\node[font=\tiny, gray]      at (-1.8,2.75) {Input space};
+\node[dot, colB0] at (-2.4,2.1) {};
+\node[dot, colB0, opacity=0.5] at (-1.2,2.35) {};
+\draw[gray!50, dashed, line width=0.5pt] (-2.4,2.1) -- (-1.2,2.35)
+  node[midway, above, font=\tiny, gray]{small $\delta$};
+\node[font=\tiny, gray] at (-1.8,1.8) {Repr.\ space};
+\node[dot, colB0] at (-2.6,1.2) {};
+\node[dot, colB0, opacity=0.5] at (-0.9,1.45) {};
+\draw[-{Latex[length=3pt]}, colRed, line width=1.2pt]
+  (-2.55,1.22) -- (-0.95,1.43);
+\node[font=\tiny\bfseries, colRed] at (-1.8,0.72) {LARGE displacement};
+\node[font=\tiny, colRed]          at (-1.8,0.44) {TDI@0\,$=1.093$\; HIGH};
+
+\node[font=\small\bfseries] at (1.8,3.05) {PMH};
+\node[font=\tiny, gray]      at (1.8,2.75) {Input space};
+\node[dot, colPMH] at (1.2,2.1) {};
+\node[dot, colPMH, opacity=0.5] at (2.4,2.35) {};
+\draw[gray!50, dashed, line width=0.5pt] (1.2,2.1) -- (2.4,2.35)
+  node[midway, above, font=\tiny, gray]{same $\delta$};
+\node[font=\tiny, gray] at (1.8,1.8) {Repr.\ space};
+\node[dot, colPMH] at (1.2,1.2) {};
+\node[dot, colPMH, opacity=0.5] at (1.5,1.25) {};
+\draw[-{Latex[length=3pt]}, colGreen, line width=1.2pt]
+  (1.22,1.21) -- (1.47,1.25);
+\node[font=\tiny\bfseries, colGreen] at (1.8,0.72) {small displacement};
+\node[font=\tiny, colGreen]          at (1.8,0.44) {TDI@0 $= 0.904$ LOW};
+
+\node[font=\footnotesize] at (0,0.08)
+  {TDI $= \|\phi(x{+}\delta){-}\phi(x)\|^2 / \|\phi(x)\|^2$};
+\end{tikzpicture}
+\caption{What TDI measures.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.56\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={Vision,Language,Foundation},
+  xtick=data,
+  xticklabels={Vision\\(CIFAR ViT), Language\\(BERT SST-2), Foundation\\(ImageNet ViT)},
+  xticklabel style={font=\footnotesize, align=center},
+  ylabel={TDI@0 (lower $=$ more isometric)},
+  ymin=0, ymax=1.55,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=2,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=9pt,
+]
+\addplot[fill=colB0, draw=none]
+  coordinates {(Vision,1.093)(Language,0.496)(Foundation,1.230)};
+\addlegendentry{Baseline (ERM)}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(Vision,0.904)(Language,0.354)(Foundation,0.936)};
+\addlegendentry{PMH}
+\node[font=\tiny\bfseries, color=colGreen] at (axis cs:Vision,0.78)    {$-17.3\%$};
+\node[font=\tiny\bfseries, color=colGreen] at (axis cs:Language,0.30)  {$-28.7\%$};
+\node[font=\tiny\bfseries, color=colGreen] at (axis cs:Foundation,0.83) {$-23.9\%$};
+\end{axis}
+\end{tikzpicture}
+\caption{TDI@0 across architectures and modalities.}
+\end{subfigure}
+\caption{\textbf{TDI measures encoder non-isometry; PMH repairs it universally.}
+\emph{Left:} A perfectly isometric encoder scores 0.
+\emph{Right:} PMH reduces TDI by $17.3\%$ (vision), $28.7\%$ (language),
+and $23.9\%$ (foundation-model scale), confirming the blind spot is universal
+and the fix is architecture-independent.}
+\label{fig:a3}
+\end{figure*}

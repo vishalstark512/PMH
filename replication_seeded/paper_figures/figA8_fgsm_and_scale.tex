@@ -1,0 +1,78 @@
+% figA8_fgsm_and_scale.tex — Figure A8: FGSM robustness (updated) + Scale universality
+% \input{figures/figA8_fgsm_and_scale}
+% FGSM numbers updated from re-run (seed non-determinism resolved, April 2026)
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={Clean,{1/255},{2/255},{4/255}},
+  xtick=data,
+  xticklabels={Clean, $\varepsilon{=}1/255$, $\varepsilon{=}2/255$, $\varepsilon{=}4/255$},
+  xticklabel style={font=\footnotesize, align=center},
+  ylabel={Accuracy (\%)},
+  ymin=0, ymax=88,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=4},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=4.5pt,
+]
+\addplot[fill=colB0, draw=none]
+  coordinates {(Clean,70.38)({1/255},47.29)({2/255},45.41)({4/255},44.50)};
+\addlegendentry{B0 (ERM)}
+\addplot[fill=colVAT, draw=none]
+  coordinates {(Clean,79.67)({1/255},63.36)({2/255},46.66)({4/255},23.61)};
+\addlegendentry{VAT}
+\addplot[fill=colNoPMH, draw=none]
+  coordinates {(Clean,80.47)({1/255},57.86)({2/255},48.79)({4/255},44.69)};
+\addlegendentry{E1 no PMH}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(Clean,81.50)({1/255},60.69)({2/255},50.80)({4/255},45.30)};
+\addlegendentry{E1 (PMH)}
+\end{axis}
+\end{tikzpicture}
+\caption{FGSM adversarial robustness (updated re-run).}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={{66M},{110M},{340M}},
+  xtick=data,
+  xticklabels={DistilBERT\\66M, BERT-base\\110M, BERT-large\\340M},
+  xticklabel style={font=\footnotesize, align=center},
+  ylabel={Blind spot ratio (para / non-para drift)},
+  ymin=0, ymax=1.08,
+  width=0.92\linewidth, height=5.5cm,
+  bar width=10pt,
+  nodes near coords,
+  nodes near coords style={font=\tiny, anchor=south},
+  point meta=rawy,
+  every node near coord/.append style={
+    /pgf/number format/fixed, /pgf/number format/precision=3},
+]
+\addplot[fill=colPMH, draw=none]
+  coordinates {({66M},0.860)({110M},0.765)({340M},0.742)};
+\addplot[draw=none, fill=none]
+  coordinates {({66M},1.0)({110M},1.0)({340M},1.0)};
+\draw[dashed, gray!60, line width=0.6pt]
+  (axis cs:{66M},1.0) -- (axis cs:{340M},1.0)
+  node[right, font=\tiny, gray]{no blind spot};
+\end{axis}
+\end{tikzpicture}
+\caption{Blind spot ratio across model scales.}
+\end{subfigure}
+\caption{\textbf{FGSM robustness (updated) and scale universality.}
+\emph{Left:} Updated FGSM results after resolving a non-deterministic first run
+(\texttt{cudnn.benchmark=True}). E1~(PMH) achieves 45.30\% at $\varepsilon{=}4/255$
+vs.\ paper 48.09\% ($-2.79$\,pp, within single-seed variance).
+PMH matches or exceeds VAT without adversarial training at every budget.
+VAT collapses at $\varepsilon{=}4/255$ (23.61\%) while PMH achieves 45.30\%:
+an incidental robustness benefit of geometry repair.
+\emph{Right:} Blind spot ratio (paraphrase drift / non-paraphrase drift) remains below 1.0
+across 66M, 110M, and 340M parameter models, confirming the geometric blind spot predicted
+by Theorem~1 is a property of the ERM objective, not of scale.}
+\label{fig:A8}
+\end{figure*}

@@ -1,0 +1,66 @@
+% figA1_crosstask.tex — Figure A1: Cross-task performance + TDI slopes
+% \input{figures/figA1_crosstask}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.52\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={T01,T02,T03,T04,T05,T06,T07},
+  xtick=data,
+  xticklabel style={font=\footnotesize},
+  ylabel={Normalised robust metric (best$=$100)},
+  ymin=0, ymax=118,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=3},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=4pt,
+]
+\addplot[fill=colB0, draw=none]
+  coordinates {(T01,50)(T02,95)(T03,93)(T04,72)(T05,100)(T06,65)(T07,76)};
+\addlegendentry{B0 (ERM)}
+\addplot[fill=colVAT, draw=none]
+  coordinates {(T01,81)(T02,86)(T03,82)(T04,93)(T05,16)(T06,100)(T07,89)};
+\addlegendentry{VAT}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(T01,100)(T02,100)(T03,100)(T04,100)(T05,81)(T06,97)(T07,100)};
+\addlegendentry{E1 (PMH)}
+\end{axis}
+\end{tikzpicture}
+\caption{Cross-task robust performance (normalised per task).}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.46\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh hbar,
+  symbolic y coords={PGD-4/255,PGD-2/255,{E1 (PMH)},{E1 no PMH},VAT,B0},
+  ytick=data,
+  yticklabel style={font=\footnotesize, align=right},
+  xlabel={$\Delta$TDI/$\Delta\sigma$ slope (lower $=$ better)},
+  xmin=0, xmax=8.0,
+  width=0.78\linewidth, height=5.5cm,
+  bar width=5pt,
+  nodes near coords,
+  nodes near coords style={font=\tiny},
+  enlarge y limits=0.18,
+]
+\addplot[fill=colPGD4, draw=none] coordinates {(2.94,PGD-4/255)};
+\addplot[fill=colPGD2, draw=none] coordinates {(3.01,PGD-2/255)};
+\addplot[fill=colPMH,  draw=none] coordinates {(3.20,{E1 (PMH)})};
+\addplot[fill=colNoPMH,draw=none] coordinates {(3.40,{E1 no PMH})};
+\addplot[fill=colVAT,  draw=none] coordinates {(5.09,VAT)};
+\addplot[fill=colB0,   draw=none] coordinates {(6.48,B0)};
+\end{axis}
+\end{tikzpicture}
+\caption{TDI degradation slope per method.}
+\end{subfigure}
+\caption{\textbf{Cross-task performance and TDI degradation slopes.}
+\emph{Left:} Bars normalise each task so the best method among \{B0, VAT, E1\} is 100
+(replication, seed~42): PMH leads five of seven; B0 leads Task~05 (mean PCK@0.05)
+and VAT leads Task~06 (avg-shift rank-1). E1\_node on Task~03.
+\emph{Right:} PMH and E1 no PMH have the lowest TDI slopes (3.20 and 3.40);
+B0/VAT degrade most rapidly (6.48 and 5.09).
+PGD's controlled slope masks a damaged floor (TDI@0$=$1.336).}
+\label{fig:a1}
+\end{figure*}

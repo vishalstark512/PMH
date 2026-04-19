@@ -1,0 +1,94 @@
+% fig1_tdi_curves.tex — Figure 1: The geometric blind spot
+% Replicated numbers, April 2026. \input{figures/fig1_tdi_curves}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh base,
+  xlabel={Perturbation strength $\sigma$},
+  ylabel={TDI (lower $=$ better)},
+  xmin=-0.005, xmax=0.21,
+  ymin=0.75, ymax=2.85,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=3,
+                draw=none, fill=none, font=\footnotesize},
+]
+\addplot[color=colB0, mark=*, solid]
+  coordinates {(0,1.093)(0.05,1.215)(0.10,1.584)(0.15,2.053)(0.20,2.468)};
+\addlegendentry{B0 (ERM)}
+\addplot[color=colVAT, mark=square*, solid]
+  coordinates {(0,1.276)(0.05,1.317)(0.10,1.524)(0.15,1.790)(0.20,2.037)};
+\addlegendentry{VAT}
+\addplot[color=colPGD2, mark=triangle*, dashed]
+  coordinates {(0,1.280)(0.05,1.310)(0.10,1.440)(0.15,1.620)(0.20,1.870)};
+\addlegendentry{PGD-2/255}
+\addplot[color=colPGD4, mark=triangle*, solid]
+  coordinates {(0,1.336)(0.05,1.358)(0.10,1.467)(0.15,1.669)(0.20,1.924)};
+\addlegendentry{PGD-4/255}
+\addplot[color=colNoPMH, mark=diamond*, dashed]
+  coordinates {(0,1.074)(0.05,1.139)(0.10,1.262)(0.15,1.414)(0.20,1.646)};
+\addlegendentry{E1 (no PMH)}
+\addplot[color=colPMH, mark=*, solid, line width=1.4pt]
+  coordinates {(0,0.904)(0.05,0.946)(0.10,1.050)(0.15,1.150)(0.20,1.305)};
+\addlegendentry{E1 (PMH)}
+\node[font=\tiny, color=colPMH, anchor=west] at (axis cs:0.135,0.95)
+  {PMH: smoothest};
+\node[font=\tiny, color=colPGD4, anchor=west] at (axis cs:0.005,2.55)
+  {PGD: worse than ERM at $\sigma{=}0$};
+\end{axis}
+\end{tikzpicture}
+\caption{TDI under increasing noise.}
+\label{fig:tdi-curves}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh base,
+  xlabel={Jacobian Frobenius norm (log scale)},
+  ylabel={TDI at $\sigma{=}0$ (lower $=$ better)},
+  xmode=log,
+  xmin=1.5, xmax=80,
+  ymin=0.80, ymax=1.55,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=3,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+]
+\addplot[only marks, mark=*, mark size=3pt, color=colB0]
+  coordinates {(34.58,1.093)};
+\addlegendentry{B0}
+\addplot[only marks, mark=square*, mark size=3pt, color=colVAT]
+  coordinates {(5.01,1.276)};
+\addlegendentry{VAT}
+\addplot[only marks, mark=triangle*, mark size=3.5pt, color=colPGD4]
+  coordinates {(2.91,1.336)};
+\addlegendentry{PGD-4/255}
+\addplot[only marks, mark=diamond*, mark size=3pt, color=colNoPMH]
+  coordinates {(13.09,1.074)};
+\addlegendentry{E1 no PMH}
+\addplot[only marks, mark=star, mark size=4pt, color=colPMH, line width=1.2pt]
+  coordinates {(8.08,0.904)};
+\addlegendentry{E1 (PMH)}
+\node[font=\tiny, align=center, color=colRed]  at (axis cs:2.4,1.46)
+  {Output\\patching\\zone};
+\node[font=\tiny, align=center, color=colGreen] at (axis cs:45,0.88)
+  {Geometric\\repair\\zone};
+\draw[dashed, gray!50, line width=0.5pt]
+  (axis cs:6,0.80) -- (axis cs:6,1.55);
+\draw[dashed, gray!50, line width=0.5pt]
+  (axis cs:1.5,1.15) -- (axis cs:80,1.15);
+\end{axis}
+\end{tikzpicture}
+\caption{Jac.\ Fro vs.\ clean-input TDI.}
+\label{fig:jac-scatter}
+\end{subfigure}
+\caption{\textbf{The geometric blind spot of supervised training.}
+\emph{(a)} TDI curves: PMH achieves the smoothest geometry at every noise level.
+PGD starts at TDI 1.336 on \emph{clean} inputs, worse than ERM (1.093), confirming Corollary~4.
+\emph{(b)} PGD achieves the lowest Jac.\ Fro (2.91) via directional suppression yet
+worst TDI (1.336): output-patching zone.
+PMH achieves minimal TDI (0.904) with moderate Jacobian reduction:
+geometric-repair zone. All values from replicated experiments.}
+\label{fig:fig1}
+\end{figure*}

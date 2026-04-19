@@ -1,0 +1,76 @@
+% figA9_graph_robust.tex — Figure A9: T02 graph robustness generalisation
+% \input{figures/figA9_graph_robust}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.50\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={Clean,{Edge drop\\30\%},{Feature drop\\30\%},{Worst case}},
+  xtick=data,
+  xticklabel style={font=\footnotesize, align=center},
+  ylabel={AUC / Accuracy (\%)},
+  ymin=0, ymax=105,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=3,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=5pt,
+]
+\addplot[fill=colB0, draw=none]
+  coordinates {(Clean,77.68)({Edge drop\\30\%},60.18)
+               ({Feature drop\\30\%},33.04)({Worst case},31.61)};
+\addlegendentry{B0}
+\addplot[fill=colVAT, draw=none]
+  coordinates {(Clean,75.00)({Edge drop\\30\%},53.75)
+               ({Feature drop\\30\%},31.96)({Worst case},31.61)};
+\addlegendentry{VAT}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(Clean,79.46)({Edge drop\\30\%},76.43)
+               ({Feature drop\\30\%},71.61)({Worst case},63.75)};
+\addlegendentry{E1 (PMH)}
+\node[font=\tiny\bfseries, color=colPMH, align=center]
+  at (rel axis cs:0.65,0.86) {Feature drop:\\PMH vs B0 $+38.6$\,pp};
+\end{axis}
+\end{tikzpicture}
+\caption{Robustness to unseen graph perturbation types.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.46\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={Consistency,{AUC curve}},
+  xtick=data,
+  xticklabels={Prediction\\consistency, AUC under\\noise curve},
+  xticklabel style={font=\footnotesize, align=center},
+  ylabel={\%},
+  ymin=0, ymax=100,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=3,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=7pt,
+]
+\addplot[fill=colB0,  draw=none]
+  coordinates {(Consistency,66.07)({AUC curve},68.30)};
+\addlegendentry{B0}
+\addplot[fill=colVAT, draw=none]
+  coordinates {(Consistency,58.93)({AUC curve},62.05)};
+\addlegendentry{VAT}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(Consistency,81.25)({AUC curve},78.62)};
+\addlegendentry{E1 (PMH)}
+\end{axis}
+\end{tikzpicture}
+\caption{Consistency and AUC under noise.}
+\end{subfigure}
+\caption{\textbf{Task~02 (PROTEINS): robustness generalisation to unseen perturbation types.}
+\emph{(a)} PMH was trained with Gaussian node-feature noise yet generalises dramatically to
+edge removal (E1 76.4\% vs.\ B0 60.2\%, $+16.2$\,pp) and feature dropout
+(E1 71.6\% vs.\ B0 33.0\%, $+38.6$\,pp) --- perturbation types never seen during training.
+Worst-case accuracy: E1 63.75\% vs.\ B0 31.61\%.
+\emph{(b)} PMH achieves 81.3\% prediction consistency and 78.6\% AUC under the noise curve,
+vs.\ B0 66.1\% and 68.3\%. Robustness generalisation is a by-product of global Frobenius
+regularisation, confirming the geometric repair interpretation of PMH.}
+\label{fig:A9}
+\end{figure*}

@@ -1,0 +1,69 @@
+% figA2_probes.tex — Figure A2: Layer-wise probe analysis
+% \input{figures/figA2_probes}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh base,
+  xlabel={Perturbation strength $\sigma$},
+  ylabel={L6 probe retention $\bigl(\text{L6}(\sigma)/\text{L6}(0)\bigr)$},
+  xmin=-0.005, xmax=0.21,
+  ymin=0.44, ymax=1.06,
+  legend pos=south west,
+]
+\addplot[color=colB0, mark=*, solid]
+  coordinates {(0,1.0)(0.05,0.910)(0.10,0.768)(0.15,0.630)(0.20,0.520)};
+\addlegendentry{B0 (ERM)}
+\addplot[color=colVAT, mark=square*, solid]
+  coordinates {(0,1.0)(0.05,0.930)(0.10,0.858)(0.15,0.790)(0.20,0.710)};
+\addlegendentry{VAT}
+\addplot[color=colNoPMH, mark=diamond*, dashed]
+  coordinates {(0,1.0)(0.05,0.965)(0.10,0.937)(0.15,0.900)(0.20,0.860)};
+\addlegendentry{E1 no PMH}
+\addplot[color=colPMH, mark=*, solid, line width=1.4pt]
+  coordinates {(0,1.0)(0.05,0.955)(0.10,0.916)(0.15,0.875)(0.20,0.830)};
+\addlegendentry{E1 (PMH)}
+\addplot[color=colPGD4, mark=triangle*, solid]
+  coordinates {(0,1.0)(0.05,0.985)(0.10,0.948)(0.15,0.905)(0.20,0.860)};
+\addlegendentry{PGD-4/255}
+\node[font=\tiny, color=colPMH, anchor=west] at (axis cs:0.115,0.93)
+  {PMH: 91.6\% at $\sigma{=}0.1$};
+\end{axis}
+\end{tikzpicture}
+\caption{Deep-layer discriminative retention.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={B0,VAT,{E1 no PMH},{E1 (PMH)},{PGD-4}},
+  xtick=data,
+  xticklabel style={font=\footnotesize, rotate=15, anchor=east},
+  ylabel={Linear probe accuracy (\%)},
+  ymin=0, ymax=98,
+  legend style={at={(0.5,1.02)}, anchor=south, legend columns=2,
+                draw=none, fill=none, font=\footnotesize},
+  width=0.92\linewidth, height=5.5cm,
+  bar width=5pt,
+]
+\addplot[fill=colPMHlight, draw=none]
+  coordinates {(B0,38.3)(VAT,31.9)({E1 no PMH},31.1)({E1 (PMH)},32.5)({PGD-4},31.6)};
+\addlegendentry{L1 (early)}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(B0,68.2)(VAT,78.75)({E1 no PMH},78.65)({E1 (PMH)},79.55)({PGD-4},67.3)};
+\addlegendentry{L6 (deep)}
+\end{axis}
+\end{tikzpicture}
+\caption{Early vs.\ deep layer accuracy ($\sigma{=}0$).}
+\end{subfigure}
+\caption{\textbf{Layer-wise geometry: how PMH reshapes what networks learn.}
+\emph{(a)} L6 probe retention: both E1 variants substantially outperform B0 (76.8\%).
+E1~no~PMH reaches 93.7\%, PMH reaches 91.6\% at $\sigma{=}0.1$; the small
+retention cost from the PMH term is far outweighed by its TDI gain (0.904 vs 1.074).
+\emph{(b)} All methods except B0 suppress early features (L1 31--32\%).
+The distinctive E1 signature is deep-layer retention, not L1 suppression alone.}
+\label{fig:a2}
+\end{figure*}

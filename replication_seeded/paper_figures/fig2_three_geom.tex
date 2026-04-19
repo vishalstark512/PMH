@@ -1,0 +1,91 @@
+% fig2_three_geom.tex — Figure 2: Three objectives, three geometries
+% \input{figures/fig2_three_geom}
+
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  dot/.style={circle, fill, inner sep=1.4pt},
+  axarr/.style={-{Latex[length=4pt]}, gray!60, line width=0.5pt},
+  panel/.style={draw=gray!40, rounded corners=4pt, inner sep=8pt,
+                line width=0.5pt, minimum width=5.0cm, minimum height=4.6cm},
+  badge/.style={rounded corners=3pt, inner sep=3pt, font=\footnotesize\bfseries},
+]
+
+%% ── Panel 1: ERM ─────────────────────────────────────────────────────────
+\begin{scope}[xshift=0cm]
+  \node[panel, fill=gray!4] at (0,0) {};
+  \node[font=\small\bfseries] at (0,1.75) {ERM training};
+  \draw[axarr] (-1.8,-1.45) -- (1.8,-1.45)
+    node[right,font=\tiny]{signal $s$};
+  \draw[axarr] (-1.8,-1.45) -- (-1.8,1.35)
+    node[above,font=\tiny]{nuisance $n$};
+  \foreach \x/\y in {-0.3/0.6,0.2/0.9,0.7/0.4,-0.6/0.2,0.9/0.8,
+                      -0.1/-0.1,0.5/-0.3,-0.8/0.8,0.3/0.0,1.0/-0.1,
+                      -0.4/-0.5,0.8/-0.6}{
+    \node[dot, colB0, opacity=0.7] at (\x,\y) {};
+  }
+  \node[badge, fill=colRed!15, text=colRed!80!black] at (0,-1.78)
+    {Large TDI $\uparrow$ \quad TDI@0 = 1.093};
+  \node[font=\tiny, gray] at (0,1.30)
+    {Jacobian rough in nuisance direction};
+\end{scope}
+
+%% ── Panel 2: PGD ─────────────────────────────────────────────────────────
+\begin{scope}[xshift=5.4cm]
+  \node[panel, fill=gray!4] at (0,0) {};
+  \node[font=\small\bfseries] at (0,1.75) {Adversarial (PGD)};
+  \draw[axarr] (-1.8,-1.45) -- (1.8,-1.45)
+    node[right,font=\tiny]{signal $s$};
+  \draw[axarr] (-1.8,-1.45) -- (-1.8,1.35)
+    node[above,font=\tiny]{nuisance $n$};
+  \fill[colVAT!15, rounded corners=2pt]
+    (-1.6,-1.2) -- (-0.2,1.1) -- (0.4,1.1) -- (-1.0,-1.2) -- cycle;
+  \node[font=\tiny, rotate=56, colVAT!70!black] at (-0.6,0.1) {PGD smooth};
+  \foreach \x/\y in {1.0/0.5,1.3/0.0,1.2/-0.6,-1.3/0.5,
+                      0.0/-0.9,0.8/-0.9,-1.2/-0.5,1.4/0.8}{
+    \node[dot, colPGD4, opacity=0.75] at (\x,\y) {};
+  }
+  \node[badge, fill=colRed!25, text=colRed!80!black] at (0,-1.78)
+    {Larger TDI! $\uparrow\uparrow$ \quad TDI@0 = 1.336};
+  \node[font=\tiny, gray] at (0,1.30)
+    {Patches one direction, worsens others};
+\end{scope}
+
+%% ── Panel 3: PMH ─────────────────────────────────────────────────────────
+\begin{scope}[xshift=10.8cm]
+  \node[panel, fill=gray!4] at (0,0) {};
+  \node[font=\small\bfseries] at (0,1.75) {PMH (ours)};
+  \draw[axarr] (-1.8,-1.45) -- (1.8,-1.45)
+    node[right,font=\tiny]{signal $s$};
+  \draw[axarr] (-1.8,-1.45) -- (-1.8,1.35)
+    node[above,font=\tiny]{nuisance $n$};
+  \foreach \x/\y in {-0.05/0.1,0.1/-0.05,-0.1/0.2,0.15/0.12,
+                      -0.12/-0.1,0.08/0.18,0.2/-0.1,-0.18/0.05}{
+    \node[dot, colPMH, opacity=0.85] at (\x,\y) {};
+  }
+  \foreach \ang in {0,45,90,135,180,225,270,315}{
+    \draw[-{Latex[length=3pt]}, colGreen!70, line width=0.6pt]
+      (0.05,0.05) -- ++(\ang:0.52);
+  }
+  \node[font=\tiny, colGreen!70!black, align=center] at (1.3,1.0)
+    {$\delta{\sim}\mathcal{N}(0,\sigma^2 I)$\\uniform all dirs};
+  \node[badge, fill=colGreen!15, text=colGreen!80!black] at (0,-1.78)
+    {Small TDI $\downarrow$ \quad TDI@0 = 0.904};
+  \node[font=\tiny, gray] at (0,1.30)
+    {Jacobian suppressed uniformly};
+\end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{Three objectives, three geometries.}
+Each panel shows the encoder's learned manifold along the nuisance direction $n$,
+with actual TDI@0 values from Task~04 (replicated).
+\emph{Left (ERM):} A nuisance push $\delta$ causes large representation displacement;
+mathematically unavoidable under ERM (Theorem~1). TDI@0$=1.093$.
+\emph{Centre (PGD):} Adversarial training smooths the encoder in one adversarial direction
+(orange band) while other directions retain or gain sensitivity (anisotropic Jacobian);
+trajectory geometry under isotropic noise worsens. TDI@0$=1.336$.
+\emph{Right (PMH):} Gaussian $\delta \sim \mathcal{N}(0,\sigma^2 I)$ penalises the
+Jacobian uniformly in all directions (Proposition~5). TDI@0$=0.904$.}
+\label{fig:fig2}
+\end{figure*}

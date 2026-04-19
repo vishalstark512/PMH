@@ -1,0 +1,75 @@
+% figA4_bert.tex — Figure A4: BERT SST-2 geometric blind spot in language
+% \input{figures/figA4_bert}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  pmh bar,
+  symbolic x coords={TDI@0,TDI@0.05,TDI@0.10,Paraphrase},
+  xtick=data,
+  xticklabels={TDI@0, TDI@0.05, TDI@0.10, Paraphrase\\drift (Pert-A)},
+  xticklabel style={font=\footnotesize, align=center},
+  ylabel={TDI (lower $=$ more isometric)},
+  ymin=0, ymax=0.78,
+  legend pos=north west,
+  width=0.92\linewidth, height=5.5cm,
+  bar width=7pt,
+]
+\addplot[fill=colB0, draw=none]
+  coordinates {(TDI@0,0.496)(TDI@0.05,0.507)(TDI@0.10,0.507)(Paraphrase,0.641)};
+\addlegendentry{Baseline (ERM)}
+\addplot[fill=colPMH, draw=none]
+  coordinates {(TDI@0,0.354)(TDI@0.05,0.355)(TDI@0.10,0.355)(Paraphrase,0.474)};
+\addlegendentry{PMH}
+\node[font=\tiny\bfseries, color=colGreen, rotate=90, anchor=west]
+  at (axis cs:TDI@0,0.37)    {$-28.7\%$};
+\node[font=\tiny\bfseries, color=colGreen, rotate=90, anchor=west]
+  at (axis cs:TDI@0.05,0.37) {$-30.1\%$};
+\node[font=\tiny\bfseries, color=colGreen, rotate=90, anchor=west]
+  at (axis cs:TDI@0.10,0.37) {$-30.3\%$};
+\node[font=\tiny\bfseries, color=colGreen, rotate=90, anchor=west]
+  at (axis cs:Paraphrase,0.49){$-26.0\%$};
+\end{axis}
+\end{tikzpicture}
+\caption{TDI reduction. Accuracy: $93.12\%\to92.43\%$ ($-0.69$\,pp).}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  dot/.style={circle, fill, inner sep=1.4pt},
+]
+\node[font=\small\bfseries] at (-1.5,2.65) {ERM};
+\node[dot, colB0] at (-2.8,1.5) {};
+\foreach \ey/\op in {2.3/0.9,1.9/0.85,1.5/0.8,1.1/0.75,0.7/0.7}{
+  \draw[colB0, opacity=\op, line width=0.7pt] (-2.8,1.5) -- (-0.2,\ey);
+  \node[dot, colB0, opacity=\op] at (-0.2,\ey) {};
+}
+\node[font=\tiny, colRed] at (-1.5,0.35) {drift $= 4.38$};
+
+\node[font=\small\bfseries] at (1.5,2.65) {PMH};
+\node[dot, colPMH] at (0.2,1.5) {};
+\foreach \ey/\op in {1.65/0.9,1.58/0.85,1.5/0.8,1.42/0.75,1.35/0.7}{
+  \draw[colPMH, opacity=\op, line width=0.7pt] (0.2,1.5) -- (2.8,\ey);
+  \node[dot, colPMH, opacity=\op] at (2.8,\ey) {};
+}
+\node[font=\tiny, colGreen] at (1.5,0.35) {drift $= 1.01$ ($-76.9\%$)};
+
+\node[font=\tiny, gray, align=center] at (0,2.7)
+  {synonym\\paraphrases};
+\node[font=\footnotesize, align=center] at (0,-0.1)
+  {Synonym paraphrase drift (CLS)};
+\end{tikzpicture}
+\caption{ERM drift 4.38 vs.\ PMH drift 1.01.}
+\end{subfigure}
+\caption{\textbf{BERT SST-2: geometric blind spot in language.}
+\emph{Left:} TDI reduction 28.7--30.3\% across perturbation levels at $<$1\,pp accuracy cost.
+\emph{Right:} Synonym paraphrase drift as mean CLS displacement.
+PMH suppresses surface-form sensitivity 4.3$\times$, a direct consequence of
+Theorem~1: sentence length and writing register predict labels but not semantic content,
+so ERM must encode them, and PMH repairs exactly that encoding.}
+\label{fig:a4}
+\end{figure*}
