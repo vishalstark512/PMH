@@ -16,6 +16,10 @@ $$\mathcal{L}_\text{PMH} = \|\phi(x) - \phi(x + \delta)\|^2, \quad \delta \sim \
 
 Proposition 5 proves Gaussian noise is the *unique* perturbation law that suppresses the full Jacobian Frobenius norm uniformly across all input directions.
 
+This repository reproduces the theorem-level implications emphasized in the manuscript update: blind-spot scale universality (0.860 -> 0.765 -> 0.742 across 66M to 340M), fine-tuning amplification (+54% under ERM fine-tuning), and PMH repair (11x reduction in fine-tuning-induced drift).
+
+Interpretability/alignment relevance: Theorem 1 addresses what any ERM-trained model must encode from a distribution, and predicts that preference-based fine-tuning can amplify nuisance sensitivity unless geometry is regularized.
+
 ---
 
 ## Headline Results (seed 42)
@@ -69,6 +73,7 @@ replication_seeded/
 │
 ├── paper_figures/
 │   └── FIGURES.md                     # Figure descriptions + links to result PNGs
+│   └── make_cross_task_results.py     # Regenerates README cross-task image
 │
 ├── run_all_replication.py             # Run all 9 tasks end-to-end
 ├── audit_paper_vs_artifacts.py        # Spot-check manuscript numbers vs JSON
@@ -308,6 +313,10 @@ Auto-downloaded data lands in `tasks/<task>/data/` (git-ignored).
 - Original paper code was unseeded; this replication adds explicit seeding. Results are within single-seed variance of the paper; 4 of 7 vision tasks **beat** the paper numbers.
 - T09 uses a 100-class × 50-sample ImageNet subset; absolute TDI values shift slightly but the PMH < pretrained ordering holds.
 - All JSON + PNG results are pre-committed to `artifacts/results/` — inspect without retraining.
+
+## Scope of Theoretical Claims
+
+Theorem 1 is an existence theorem: it guarantees the presence of nuisance-sensitive directions under supervised ERM, rather than a tight numeric predictor for every model instance. This is the intended form for architecture- and dataset-agnostic claims; task-level constants are reported empirically in the accompanying results artifacts.
 
 ---
 

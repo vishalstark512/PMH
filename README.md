@@ -23,6 +23,13 @@ The paper's central claim unifies four results often treated separately:
 
 In this framing, adversarial vulnerability is one corollary of a general theorem about representation geometry under supervised learning.
 
+### What This Changes
+
+- **Scale universality:** the blind-spot ratio worsens monotonically with model size (0.860 -> 0.765 -> 0.742 from 66M to 340M).
+- **Fine-tuning amplification:** task-specific ERM fine-tuning increases blind-spot drift by 54%, while PMH repairs it by 11x.
+- **Interpretability position:** mechanistic interpretability asks what a trained model learned; Theorem 1 characterizes what any ERM-trained model must learn from a distribution.
+- **Alignment relevance:** preference-based fine-tuning (including RLHF-style pipelines) can amplify sensitivity to preference-correlated nuisance signals unless geometry is regularized.
+
 ### The Flaw: The Geometric Blind Spot
 
 When you train an encoder with empirical risk minimisation (ERM), the training objective **forces** the encoder to remain sensitive to input directions that carry label signal but act as noise at test time. Even after perfect training on infinite data, the encoder *must* distort its representation space in those directions.
@@ -96,6 +103,10 @@ $$
 
 uniformly across all input directions.
 
+### Scope and Limitations (How to Read the Theorem)
+
+Theorem 1 is an existence result by design: it identifies nuisance-correlated directions that must remain sensitive for any architecture and dataset satisfying the assumptions. This is the right form for universal claims about supervised objectives. The paper does not claim a tight per-model constant predictor; Appendix gap analyses and nuisance-subspace estimation are the bridge between universal theory and model-specific numerics.
+
 ---
 
 ## What is TDI?
@@ -155,6 +166,7 @@ PMH/
 │   │   └── 09_imagenet_vit/baseline/{summary,tdi_pretrained_baseline}.json
 │   │
 │   ├── paper_figures/FIGURES.md       ← figure index with links to result files
+│   ├── paper_figures/make_cross_task_results.py ← reproducible README figure generator
 │   ├── run_all_replication.py         ← reproduce all 9 tasks end-to-end
 │   ├── audit_paper_vs_artifacts.py    ← verify replication numbers vs paper claims
 │   ├── RESULTS.md                     ← full table-by-table comparison with paper
