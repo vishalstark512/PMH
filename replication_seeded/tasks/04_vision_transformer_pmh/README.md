@@ -86,16 +86,31 @@ python tasks/04_vision_transformer_pmh/corruption_eval.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/04_vision_transformer_pmh/{B0,VAT,E1_no_pmh,E1}/best.pt
-  results/04_vision_transformer_pmh/
-    tdi/tdi_results.json            — TDI at 5 noise levels
-    jacobian/jacobian_results.json  — Frobenius norm per model
-    linear_probe/lp_results.json    — layer-wise LP accuracy
-    adversarial/fgsm_results.json   — FGSM at 3 ε budgets
-    corruption/corruption_results.json — Gauss/blur/brightness
+artifacts/models/04_vision_transformer_pmh/{B0,VAT,E1_no_pmh,E1}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/04_vision_transformer_pmh/
+  interp/tdi_results.json              — TDI at σ = 0/0.05/0.10/0.15/0.20
+  interp/jacobian_norm_results.json    — Frobenius norm per model
+  interp/linear_probe_results.json     — layer-wise LP accuracy (12 layers)
+  interp/clean_noisy_distance.png
+  interp/cls_trajectory_{B0,E1}_{clean,noisy}.png
+  adversarial/fgsm_results.json        — FGSM at ε = 1/255, 2/255, 4/255
+  adversarial/fgsm_accuracy.png
+  corruptions/corruptions_results.json — Gauss/blur/brightness accuracy
+  corruptions/corruptions_accuracy.png
+```
+
+Direct links to key JSON files:
+- [`interp/tdi_results.json`](../../artifacts/results/04_vision_transformer_pmh/interp/tdi_results.json)
+- [`interp/jacobian_norm_results.json`](../../artifacts/results/04_vision_transformer_pmh/interp/jacobian_norm_results.json)
+- [`interp/linear_probe_results.json`](../../artifacts/results/04_vision_transformer_pmh/interp/linear_probe_results.json)
+- [`adversarial/fgsm_results.json`](../../artifacts/results/04_vision_transformer_pmh/adversarial/fgsm_results.json)
+- [`corruptions/corruptions_results.json`](../../artifacts/results/04_vision_transformer_pmh/corruptions/corruptions_results.json)
 
 ## Hyperparameters (PMH / E1)
 

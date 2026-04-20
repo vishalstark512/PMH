@@ -1,0 +1,12 @@
+QM9 Embedding & prediction analysis
+==================================================
+Position noise σ = 0.01 Å, node noise = 0.05
+Replicates for pred stability = 5
+
+Model   Emb stability  Mean pred std
+--------------------------------------
+B0             0.5835        28.2737
+E1             0.3362        19.3813
+
+Embedding stability = mean ‖emb_noisy − emb_clean‖ (lower = more stable).
+Mean pred std = mean over molecules of std(pred) over noisy replicates (lower = more stable predictions).

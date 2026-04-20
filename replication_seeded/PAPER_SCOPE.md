@@ -1,6 +1,6 @@
 # Numbers the replication tree should recover
 
-Source: `submission/PMH_ICML2025_submission.tex` (ICML submission). Exact floats can vary slightly with hardware unless `--deterministic` is used; headline metrics are the contract.
+Source: ICML 2025 submission (preprint). Exact floats can vary slightly with hardware unless `--deterministic` is used; headline metrics are the contract.
 
 ## Cross-task headline table (`tab:crosstask`)
 

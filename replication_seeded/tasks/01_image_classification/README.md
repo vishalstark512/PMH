@@ -50,13 +50,18 @@ python tasks/01_image_classification/embedding_stability.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/01_image_classification/CIFAR10/{B0,VAT,E1}/best.pt
-  results/01_image_classification/
-    eval_{B0,VAT,E1}.json       — accuracy + noise robustness
-    embedding_drift.json        — drift at σ = 0.05/0.10/0.15/0.20
+artifacts/models/01_image_classification/cifar10/{B0,VAT,E1}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/01_image_classification/evals/
+  embedding_stability.json    — drift at σ = 0.05/0.10/0.15/0.20 for B0/VAT/E1
+```
+
+→ [`artifacts/results/01_image_classification/evals/embedding_stability.json`](../../artifacts/results/01_image_classification/evals/embedding_stability.json)
 
 ## Hyperparameters (PMH / E1)
 

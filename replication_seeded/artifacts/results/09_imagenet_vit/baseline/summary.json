@@ -1,0 +1,27 @@
+[
+  {
+    "run": "pretrained_baseline",
+    "model": "vit_base_patch16_224",
+    "val_data": "Hugging Face ILSVRC/imagenet-1k validation split",
+    "n_classes": 100,
+    "max_per_class": 50,
+    "tdi": {
+      "0.0": 1.229911,
+      "0.01": 1.234729,
+      "0.05": 1.27641,
+      "0.1": 1.326949
+    },
+    "intra_mean": {
+      "0.0": 41.047631,
+      "0.01": 41.255218,
+      "0.05": 41.355405,
+      "0.1": 40.949904
+    },
+    "accuracy": {
+      "0.0": null,
+      "0.01": null,
+      "0.05": null,
+      "0.1": null
+    }
+  }
+]

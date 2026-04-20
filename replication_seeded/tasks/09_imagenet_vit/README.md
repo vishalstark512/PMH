@@ -55,13 +55,21 @@ python tasks/09_imagenet_vit/eval.py --subset_classes 100 --subset_samples 50
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/09_imagenet_vit/{pretrained,pmh}/best.pt
-  results/09_imagenet_vit/
-    tdi_results.json     — TDI at 3 noise levels
-    intra_class.json     — mean intra-class L2 distance
+artifacts/models/09_imagenet_vit/pmh_tune/pmh_best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/09_imagenet_vit/baseline/
+  tdi_pretrained_baseline.json   — TDI at σ = 0/0.05/0.10 for pretrained ViT
+  summary.json                   — intra-class distance + accuracy summary
+```
+
+Direct links:
+- [`baseline/tdi_pretrained_baseline.json`](../../artifacts/results/09_imagenet_vit/baseline/tdi_pretrained_baseline.json)
+- [`baseline/summary.json`](../../artifacts/results/09_imagenet_vit/baseline/summary.json)
 
 ## Hyperparameters (PMH)
 

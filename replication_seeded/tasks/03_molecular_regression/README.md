@@ -52,12 +52,26 @@ python tasks/03_molecular_regression/eval.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/03_molecular_regression/QM9/{B0,VAT,E1}/best.pt
-  results/03_molecular_regression/
-    eval_{B0,VAT,E1}.json       — clean_mae, noisy_mae, noise curve
+artifacts/models/03_molecular_regression/QM9/{B0,VAT,E1}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/03_molecular_regression/
+  evals/eval_summary.json             — MAE per model + per-property breakdown
+  evals/comparison.png
+  evals/per_property_mae.png
+  evals/heatmap_per_property.png
+  embedding_analysis/embedding_stability.png
+  embedding_analysis/prediction_stability.png
+  embedding_analysis/embedding_analysis_report.txt
+```
+
+Direct links:
+- [`evals/eval_summary.json`](../../artifacts/results/03_molecular_regression/evals/eval_summary.json)
+- [`evals/comparison.png`](../../artifacts/results/03_molecular_regression/evals/comparison.png)
 
 ## Hyperparameters (PMH / E1)
 

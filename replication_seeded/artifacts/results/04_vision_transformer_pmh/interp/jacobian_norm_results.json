@@ -1,0 +1,37 @@
+{
+  "runs": {
+    "B0": {
+      "clean_acc_on_subset": 69.3,
+      "n_batches": 16,
+      "n_probes": 2,
+      "jacobian_fro_mean": 34.582521200180054,
+      "jacobian_fro_std": 1.508822990901554
+    },
+    "VAT": {
+      "clean_acc_on_subset": 79.4,
+      "n_batches": 16,
+      "n_probes": 2,
+      "jacobian_fro_mean": 5.012305855751038,
+      "jacobian_fro_std": 0.13140611157884183
+    },
+    "E1_no_pmh": {
+      "clean_acc_on_subset": 79.8,
+      "n_batches": 16,
+      "n_probes": 2,
+      "jacobian_fro_mean": 13.092695116996765,
+      "jacobian_fro_std": 0.4425099396231548
+    },
+    "E1": {
+      "clean_acc_on_subset": 80.2,
+      "n_batches": 16,
+      "n_probes": 2,
+      "jacobian_fro_mean": 8.08242392539978,
+      "jacobian_fro_std": 0.43458128579719346
+    }
+  },
+  "settings": {
+    "max_samples": 2000,
+    "n_batches": 50,
+    "n_probes": 2
+  }
+}

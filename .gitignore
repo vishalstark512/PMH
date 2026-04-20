@@ -201,6 +201,17 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# LaTeX paper source (view compiled PDF on arXiv instead)
+*.tex
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.toc
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

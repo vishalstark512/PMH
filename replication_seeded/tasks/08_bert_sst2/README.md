@@ -73,14 +73,22 @@ python tasks/08_bert_sst2/semantic_tdi.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/08_bert_sst2/{baseline,pmh}/best_model/
-  results/08_bert_sst2/
-    eval_{baseline,pmh}.json                 — TDI at 3 noise levels
-    semantic_tdi/
-      semantic_tdi_results.json              — paraphrase drift + scale + hierarchy
+artifacts/models/08_bert_sst2/{baseline,pmh}/best.pt
+artifacts/models/08_bert_sst2/{baseline,pmh}/tokenizer/
 ```
+
+Pre-committed result files:
+```
+artifacts/results/08_bert_sst2/
+  semantic_tdi/semantic_tdi_results.json   — paraphrase drift + scale + fine-tuning hierarchy
+  semantic_tdi/semantic_tdi_plot.png
+```
+
+Direct links:
+- [`semantic_tdi/semantic_tdi_results.json`](../../artifacts/results/08_bert_sst2/semantic_tdi/semantic_tdi_results.json)
+- [`semantic_tdi/semantic_tdi_plot.png`](../../artifacts/results/08_bert_sst2/semantic_tdi/semantic_tdi_plot.png)
 
 ### Key JSON structure (`semantic_tdi_results.json`)
 

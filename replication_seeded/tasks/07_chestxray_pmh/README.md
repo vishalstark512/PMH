@@ -70,13 +70,29 @@ python tasks/07_chestxray_pmh/saliency_stability.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/07_chestxray_pmh/{B0,VAT,E1_no_pmh,E1}/best.pt
-  results/07_chestxray_pmh/
-    eval_{B0,VAT,E1_no_pmh,E1}.json    — accuracy per shift, stage drift
-    saliency_{B0,VAT,E1_no_pmh,E1}.json — cosine similarity scores
+artifacts/models/07_chestxray_pmh/{B0,VAT,E1_no_pmh,E1}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/07_chestxray_pmh/
+  eval_out/compare_results.json                    — clean accuracy per model
+  eval_out_robust/compare_results_robust.json      — accuracy per shift
+  eval_out_robust/robust_accuracy.png
+  eval_out_robust/robust_auc.png
+  eval_out_robust/robust_embedding_stability.png
+  interp_resnet/stage_distances.json               — stage-wise drift (S1–S4)
+  interp_resnet/resnet_stage_clean_noisy_distance.png
+  saliency_stability/saliency_stability_results.json  — cosine similarity B0 vs E1
+  saliency_stability/saliency_stability.png
+```
+
+Direct links:
+- [`eval_out_robust/compare_results_robust.json`](../../artifacts/results/07_chestxray_pmh/eval_out_robust/compare_results_robust.json)
+- [`interp_resnet/stage_distances.json`](../../artifacts/results/07_chestxray_pmh/interp_resnet/stage_distances.json)
+- [`saliency_stability/saliency_stability_results.json`](../../artifacts/results/07_chestxray_pmh/saliency_stability/saliency_stability_results.json)
 
 ## Hyperparameters (PMH / E1)
 

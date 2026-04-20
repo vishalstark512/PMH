@@ -1,0 +1,21 @@
+{
+  "noise_sigma": 0.08,
+  "runs": {
+    "B0": {
+      "saliency_stability_cos_sim": 0.5299,
+      "n_batches": 20
+    },
+    "VAT": {
+      "saliency_stability_cos_sim": 0.668,
+      "n_batches": 20
+    },
+    "E1_no_pmh": {
+      "saliency_stability_cos_sim": 0.717,
+      "n_batches": 20
+    },
+    "E1": {
+      "saliency_stability_cos_sim": 0.7176,
+      "n_batches": 20
+    }
+  }
+}

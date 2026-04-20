@@ -63,13 +63,26 @@ python tasks/05_pose_estimation_pmh/embedding_stability.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/05_pose_estimation_pmh/{B0,VAT,PMH}/best.pt
-  results/05_pose_estimation_pmh/
-    eval_{B0,VAT,PMH}.json    — PCK@0.05, PCK@0.10, MPJPE
-    embedding_drift.json      — drift at occ10/20/30, gauss0.05/0.10
+artifacts/models/05_pose_estimation_pmh/{baseline,E1,VAT}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/05_pose_estimation_pmh/eval_out/
+  robustness_comparison.json   — PCK@0.05, PCK@0.10, MPJPE per model
+  embedding_stability.json     — drift at occ10/20/30
+  pck_vs_occlusion_0.05.png
+  pck_vs_occlusion_0.1.png
+  mke_vs_occlusion.png
+  pck_vs_attack_0.05.png
+  mke_vs_attack.png
+```
+
+Direct links:
+- [`eval_out/robustness_comparison.json`](../../artifacts/results/05_pose_estimation_pmh/eval_out/robustness_comparison.json)
+- [`eval_out/pck_vs_occlusion_0.05.png`](../../artifacts/results/05_pose_estimation_pmh/eval_out/pck_vs_occlusion_0.05.png)
 
 ## Hyperparameters (PMH)
 

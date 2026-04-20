@@ -1,0 +1,47 @@
+# ============================================================
+# replication_seeded — .gitignore
+# ============================================================
+
+# ── Model checkpoints (~1.85 GB, too large for git) ──────────
+artifacts/models/
+**/*.pt
+**/*.pth
+**/*.ckpt
+**/*.safetensors
+**/*.bin
+
+# ── Downloaded datasets (managed outside the repo) ───────────
+tasks/**/data/
+
+# ── Python cache ─────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Jupyter ──────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── OS / editor noise ────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+
+# ── Virtual envs ─────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Log files generated during training ──────────────────────
+*.log
+
+# ── LaTeX figure sources (not useful without a TeX compiler) ─
+paper_figures/*.tex
+
+# ============================================================
+# INTENTIONALLY KEPT (not ignored):
+#   artifacts/results/   — JSON + PNG experiment results (~4.4 MB)
+#   tasks/               — all source code
+#   run_all_replication.py, run_task.py, tdi_utils.py
+#   NON_PAPER_CONTENT_AUDIT.md, PAPER_SCOPE.md, RESULTS.md
+# ============================================================

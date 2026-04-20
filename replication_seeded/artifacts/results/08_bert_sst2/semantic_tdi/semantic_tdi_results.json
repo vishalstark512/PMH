@@ -1,0 +1,82 @@
+{
+  "device": "cpu",
+  "max_pairs_per_label": 1000,
+  "n_total_pairs": 2000,
+  "paws_split": "test",
+  "task_finetuning_experiment": [
+    {
+      "name": "bert-pretrained",
+      "label": "BERT\n(pretrained)",
+      "para_drift": 0.024353,
+      "nonpara_drift": 0.031842,
+      "blind_spot_ratio": 0.764803,
+      "tdi_paws_labels": 21.446455,
+      "para_l2_drift": 2.9393,
+      "nonpara_l2_drift": 3.3943,
+      "n_para": 1000,
+      "n_nonpara": 1000
+    },
+    {
+      "name": "bert-sst2-erm",
+      "label": "BERT\n(SST-2 ERM)",
+      "para_drift": 0.037514,
+      "nonpara_drift": 0.055062,
+      "blind_spot_ratio": 0.681317,
+      "tdi_paws_labels": 21.617448,
+      "para_l2_drift": 3.5554,
+      "nonpara_l2_drift": 4.2908,
+      "n_para": 1000,
+      "n_nonpara": 1000
+    },
+    {
+      "name": "bert-sst2-pmh",
+      "label": "BERT\n(SST-2 PMH)",
+      "para_drift": 0.003329,
+      "nonpara_drift": 0.005262,
+      "blind_spot_ratio": 0.632733,
+      "tdi_paws_labels": 23.57945,
+      "para_l2_drift": 0.679,
+      "nonpara_l2_drift": 0.8338,
+      "n_para": 1000,
+      "n_nonpara": 1000
+    }
+  ],
+  "scale_experiment": [
+    {
+      "name": "distilbert-66M",
+      "label": "DistilBERT\n(66 M)",
+      "para_drift": 0.00728,
+      "nonpara_drift": 0.008465,
+      "blind_spot_ratio": 0.859927,
+      "tdi_paws_labels": 20.05781,
+      "para_l2_drift": 1.3524,
+      "nonpara_l2_drift": 1.496,
+      "n_para": 1000,
+      "n_nonpara": 1000
+    },
+    {
+      "name": "bert-base-110M",
+      "label": "BERT-base\n(110 M)",
+      "para_drift": 0.024353,
+      "nonpara_drift": 0.031842,
+      "blind_spot_ratio": 0.764803,
+      "tdi_paws_labels": 21.446455,
+      "para_l2_drift": 2.9393,
+      "nonpara_l2_drift": 3.3943,
+      "n_para": 1000,
+      "n_nonpara": 1000
+    },
+    {
+      "name": "bert-large-340M",
+      "label": "BERT-large\n(340 M)",
+      "para_drift": 0.045264,
+      "nonpara_drift": 0.061002,
+      "blind_spot_ratio": 0.742008,
+      "tdi_paws_labels": 17.035759,
+      "para_l2_drift": 4.9721,
+      "nonpara_l2_drift": 5.8765,
+      "n_para": 1000,
+      "n_nonpara": 1000
+    }
+  ]
+}

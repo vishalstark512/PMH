@@ -1,0 +1,54 @@
+{
+  "runs": {
+    "B0": {
+      "clean": 70.38,
+      "gaussian_0.05": 65.53,
+      "gaussian_0.10": 51.79,
+      "blur_3": 46.83,
+      "brightness_0.7": 64.51,
+      "brightness_1.3": 66.68,
+      "contrast_0.7": 63.81,
+      "contrast_1.3": 67.93
+    },
+    "VAT": {
+      "clean": 79.67,
+      "gaussian_0.05": 76.21,
+      "gaussian_0.10": 57.84,
+      "blur_3": 52.97,
+      "brightness_0.7": 73.48,
+      "brightness_1.3": 75.82,
+      "contrast_0.7": 71.76,
+      "contrast_1.3": 77.85
+    },
+    "E1_no_pmh": {
+      "clean": 80.27,
+      "gaussian_0.05": 77.87,
+      "gaussian_0.10": 74.4,
+      "blur_3": 52.3,
+      "brightness_0.7": 73.78,
+      "brightness_1.3": 74.96,
+      "contrast_0.7": 73.63,
+      "contrast_1.3": 77.7
+    },
+    "E1": {
+      "clean": 80.51,
+      "gaussian_0.05": 77.88,
+      "gaussian_0.10": 74.16,
+      "blur_3": 53.1,
+      "brightness_0.7": 74.31,
+      "brightness_1.3": 75.15,
+      "contrast_0.7": 74.16,
+      "contrast_1.3": 77.7
+    }
+  },
+  "perturbations": [
+    "clean",
+    "gaussian_0.05",
+    "gaussian_0.10",
+    "blur_3",
+    "brightness_0.7",
+    "brightness_1.3",
+    "contrast_0.7",
+    "contrast_1.3"
+  ]
+}

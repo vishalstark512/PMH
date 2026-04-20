@@ -1,0 +1,77 @@
+
+--- Summary: accuracy under node feature noise ---
+Model         Clean     σ=0.05     σ=0.10     σ=0.15     σ=0.20
+---------------------------------------------------------------
+B0            77.68 76.43±1.66 73.75±1.07 61.79±2.96 44.82±2.07
+VAT           75.00 72.50±1.54 66.79±1.99 51.96±2.61 38.93±2.91
+E1            79.46 80.71±1.56 77.86±1.43 78.57±1.69 75.18±1.43
+E1−B0    +1.79    +4.29    +4.11   +16.79   +30.36
+
+(Positive = PMH beats baseline at that noise level.)
+
+--- Accuracy under edge removal (unseen at train) ---
+Model            0%        10%        20%        30%        40%        50%
+--------------------------------------------------------------------------
+B0            77.68 74.82±2.49 71.25±1.91 60.18±3.98 46.25±4.01 39.82±2.37
+VAT           75.00 69.82±3.41 63.21±1.82 53.75±4.50 42.86±1.87 36.96±0.71
+E1            79.46 78.75±1.54 77.50±1.43 76.43±0.91 72.86±1.84 63.75±3.12
+E1−B0    +1.79    +3.93    +6.25   +16.25   +26.61   +23.93
+(Positive = PMH beats baseline under edge removal.)
+
+--- Accuracy under edge addition (unseen at train; can hurt B1) ---
+Model            0%       +10%       +20%       +30%
+----------------------------------------------------
+B0            77.68 79.82±1.84 78.75±1.54 78.39±0.67
+VAT           75.00 76.96±1.31 75.71±1.73 71.07±2.91
+E1            79.46 80.54±0.36 80.18±0.67 80.36±0.56
+E1−B0    +1.79    +0.71    +1.43    +1.96
+(Positive = PMH beats baseline under edge addition.)
+
+--- Accuracy under feature dropout (test-time; representation stability) ---
+Model            0%        10%        20%        30%
+----------------------------------------------------
+B0            77.68 50.89±1.87 34.82±0.80 33.04±1.69
+VAT           75.00 41.25±1.73 31.61±0.71 31.96±0.36
+E1            79.46 77.50±1.04 76.07±1.54 71.61±3.16
+E1−B0    +1.79   +26.61   +41.25   +38.57
+(Positive = PMH beats baseline under feature dropout.)
+
+--- Accuracy under combined attack (noise σ + edge removal; E1 trained for both) ---
+Model    σ=0.10,e10% σ=0.15,e20%
+------------------------------
+B0       65.18±3.14 40.18±2.40
+VAT      57.50±1.75 36.79±2.79
+E1       77.32±2.50 73.39±1.04
+E1−B0   +12.14   +33.21
+(Positive = PMH beats baseline under combined attack.)
+
+--- Accuracy under extrapolation noise (σ > train; PMH degrades more gracefully) ---
+Model        σ=0.25     σ=0.30     σ=0.40
+-----------------------------------------
+B0       36.79±4.16 32.68±1.84 31.61±1.84
+VAT      34.11±2.73 32.14±0.98 31.61±0.44
+E1       74.64±2.91 73.21±1.79 66.96±0.98
+E1−B0   +37.86   +40.54   +35.36
+
+--- Prediction consistency under noise (σ=0.1, K=10; PMH more stable) ---
+Model     Consistency %   Mean acc %
+------------------------------------
+B0                66.07        73.04
+VAT               58.93        68.39
+E1                81.25        79.20
+E1−B0 (consistency): +15.18%
+
+--- Combined noise + feature dropout (unseen mix) ---
+Model    σ=0.10,f20% σ=0.15,f30%
+------------------------------
+B0            35.18      32.68
+VAT           31.25      31.96
+E1            76.79      64.64
+E1−B0   +41.61   +31.96
+
+--- Robustness AUC (noise) & worst-case accuracy ---
+Model     AUC (noise)   Worst-case %
+------------------------------------
+B0              68.30          31.61
+VAT             62.05          31.61
+E1              78.62          63.75

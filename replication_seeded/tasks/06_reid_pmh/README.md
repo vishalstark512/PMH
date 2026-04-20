@@ -53,12 +53,25 @@ python tasks/06_reid_pmh/eval.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/06_reid_pmh/{B0,VAT,E1}/best.pt
-  results/06_reid_pmh/
-    eval_results.json    — Rank-1 and mAP per shift
+artifacts/models/06_reid_pmh/{B0,VAT,E1}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/06_reid_pmh/
+  eval_out/compare_results.json             — clean evaluation Rank-1 and mAP
+  eval_out_robust/compare_results_robust.json — Rank-1 and mAP per shift
+  eval_out_robust/robust_rank1.png
+  eval_out_robust/robust_mAP.png
+  eval_out_robust/robust_embedding_stability.png
+```
+
+Direct links:
+- [`eval_out/compare_results.json`](../../artifacts/results/06_reid_pmh/eval_out/compare_results.json)
+- [`eval_out_robust/compare_results_robust.json`](../../artifacts/results/06_reid_pmh/eval_out_robust/compare_results_robust.json)
+- [`eval_out_robust/robust_rank1.png`](../../artifacts/results/06_reid_pmh/eval_out_robust/robust_rank1.png)
 
 ## Hyperparameters (PMH / E1)
 

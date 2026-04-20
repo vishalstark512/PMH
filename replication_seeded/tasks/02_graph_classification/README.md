@@ -1,7 +1,7 @@
 # Task 02 — PROTEINS Graph Classification (GNN)
 
 **Paper section:** §6.2 / Table 3 (cross-task headline) / Table A1 (embedding drift)  
-**New figure:** Fig A9 (`paper_figures/figA9_graph_robust.tex`)
+**New figure:** Fig A9 — see [`paper_figures/FIGURES.md#fig-a9`](../../paper_figures/FIGURES.md) and [`artifacts/results/02_graph_classification/evals/comparison_curves.png`](../../artifacts/results/02_graph_classification/evals/comparison_curves.png)
 
 ---
 
@@ -69,13 +69,29 @@ python tasks/02_graph_classification/embedding_stability.py
 
 ## Artifacts produced
 
+Model weights (not committed, reproduced by training):
 ```
-artifacts/
-  models/02_graph_classification/PROTEINS/{B0,VAT,E1}/best.pt
-  results/02_graph_classification/evals/
-    eval_{B0,VAT,E1}.json       — AUC, edge/feature drop, consistency
-    embedding_drift.json        — drift at σ = 0.05/0.10/0.15/0.20
+artifacts/models/02_graph_classification/PROTEINS/{B0,VAT,E1}/best.pt
 ```
+
+Pre-committed result files:
+```
+artifacts/results/02_graph_classification/evals/
+  eval_B0.json                — AUC, edge/feature drop, consistency for B0
+  eval_VAT.json               — same for VAT
+  eval_E1.json                — same for E1 (PMH)
+  embedding_drift.json        — drift at σ = 0.05/0.10/0.15/0.20
+  accuracy_bars.png
+  comparison_curves.png
+  accuracy_under_edge_removal.png
+  accuracy_under_feature_dropout.png
+  (+ 8 more PNGs)
+```
+
+Direct links:
+- [`evals/eval_E1.json`](../../artifacts/results/02_graph_classification/evals/eval_E1.json)
+- [`evals/embedding_drift.json`](../../artifacts/results/02_graph_classification/evals/embedding_drift.json)
+- [`evals/comparison_curves.png`](../../artifacts/results/02_graph_classification/evals/comparison_curves.png)
 
 ## Hyperparameters (PMH / E1)
 
