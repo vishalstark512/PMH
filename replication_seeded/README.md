@@ -342,6 +342,6 @@ Several metrics are computed but not reported in the paper — see [NON_PAPER_CO
              Theory, Consequences, and Minimal Repair},
   author  = {Rajput, Vishal},
   year    = {2025},
-  note    = {Preprint. KU Leuven.}
+  note    = {Preprint. KU Leuven, Belgium.}
 }
 ```
