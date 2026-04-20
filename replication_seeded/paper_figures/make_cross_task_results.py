@@ -7,13 +7,7 @@ from matplotlib.patches import Patch
 
 def make_figure(out_path: str) -> None:
     # Left panel: vision tasks primary robustness metric (%)
-    vision_labels = [
-        "T01 CIFAR-10\nAcc@σ=0.10",
-        "T02 PROTEINS\nAUC@σ=0.10",
-        "T05 Pose\nPCK@0.05 (clean)",
-        "T06 ReID\nAvg-Shift Rank-1",
-        "T07 Chest-ray\nWorst-Shift Acc",
-    ]
+    vision_labels = ["T01", "T02", "T05", "T06", "T07"]
     b0 = [40.0, 73.8, 42.5, 43.0, 62.5]
     vat = [65.2, 66.8, 11.9, 65.8, 73.1]
     pmh = [80.4, 77.9, 39.7, 63.7, 82.5]
@@ -31,7 +25,7 @@ def make_figure(out_path: str) -> None:
         "Pretrained": "#707070",  # dark gray
     }
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.5, 8.3), gridspec_kw={"wspace": 0.15})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14.2, 8.8), gridspec_kw={"wspace": 0.16})
     fig.suptitle("PMH Robustness Across All 9 Tasks — Replication Results", fontsize=24, y=0.98)
 
     # Left panel plotting
@@ -53,7 +47,8 @@ def make_figure(out_path: str) -> None:
     ax1.set_ylim(0, 102)
     ax1.set_ylabel("Metric value (%)", fontsize=15)
     ax1.set_xticks(x)
-    ax1.set_xticklabels(vision_labels, rotation=22, ha="right", fontsize=11)
+    ax1.set_xticklabels(vision_labels, rotation=0, ha="center", fontsize=12)
+    ax1.set_xlabel("T01=CIFAR-10  |  T02=PROTEINS  |  T05=Pose  |  T06=ReID  |  T07=Chest-ray", fontsize=11)
     ax1.grid(axis="y", alpha=0.35)
     ax1.legend(loc="upper center", ncol=3, fontsize=13, frameon=True)
 
@@ -79,7 +74,7 @@ def make_figure(out_path: str) -> None:
     ax2.set_ylabel("TDI | lower = better", fontsize=15)
     ax2.set_ylim(0, 1.42)
     ax2.set_xticks([1, 3.5, 5.5])
-    ax2.set_xticklabels(["T04 ViT\nTDI@0 ↓", "T08 BERT\nTDI@0 ↓", "T09 ImageNet\nViT TDI@0 ↓"], fontsize=13)
+    ax2.set_xticklabels(["T04 ViT\nTDI@0 ↓", "T08 BERT\nTDI@0 ↓", "T09 ImageNet ViT\nTDI@0 ↓"], fontsize=12)
     ax2.grid(axis="y", alpha=0.35)
 
     # Correct, complete legend for right panel
@@ -92,16 +87,9 @@ def make_figure(out_path: str) -> None:
     ]
     ax2.legend(handles=handles, loc="upper center", ncol=3, fontsize=12, frameon=True)
 
-    fig.text(
-        0.5,
-        0.015,
-        "All values from replication_seeded/artifacts/results/. T08 BERT TDI from semantic_tdi_results.json. "
-        "T09 TDI from tdi_pretrained_baseline.json.",
-        ha="center",
-        fontsize=10,
-    )
-    # Explicit spacing avoids tight_layout clipping/overlap with rotated tick labels and footer.
-    fig.subplots_adjust(left=0.06, right=0.985, top=0.90, bottom=0.20, wspace=0.15)
+    # Keep in-image footer very short to avoid overlap when GitHub scales the image down.
+    fig.text(0.5, 0.02, "Source: replication_seeded/artifacts/results/", ha="center", fontsize=10)
+    fig.subplots_adjust(left=0.06, right=0.985, top=0.90, bottom=0.16, wspace=0.16)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     fig.savefig(out_path, dpi=180)
