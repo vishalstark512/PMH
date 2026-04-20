@@ -37,6 +37,7 @@ env/
 
 # ── LaTeX figure sources (not useful without a TeX compiler) ─
 paper_figures/*.tex
+!paper_figures/figA1_crosstask.tex
 
 # ============================================================
 # INTENTIONALLY KEPT (not ignored):
