@@ -34,7 +34,9 @@
 \begin{tikzpicture}
 \begin{axis}[
   pmh hbar,
-  symbolic y coords={PGD-4/255,PGD-2/255,{E1 (PMH)},{E1 no PMH},VAT,B0},
+  % Names with '/' must be braced or pgfplots parses them as division and the
+  % bar coordinates no longer match these tick labels (two bars vanish).
+  symbolic y coords={{PGD-4/255},{PGD-2/255},{E1 (PMH)},{E1 no PMH},VAT,B0},
   ytick=data,
   yticklabel style={font=\footnotesize, align=right},
   xlabel={$\Delta$TDI/$\Delta\sigma$ slope (lower $=$ better)},
@@ -51,8 +53,8 @@
   nodes near coords style={font=\tiny},
   enlarge y limits=0.18,
 ]
-\addplot[fill=colPGD4, draw=none] coordinates {(2.94,PGD-4/255)};
-\addplot[fill=colPGD2, draw=none] coordinates {(3.01,PGD-2/255)};
+\addplot[fill=colPGD4, draw=none] coordinates {(2.94,{PGD-4/255})};
+\addplot[fill=colPGD2, draw=none] coordinates {(3.01,{PGD-2/255})};
 \addplot[fill=colPMH,  draw=none] coordinates {(3.20,{E1 (PMH)})};
 \addplot[fill=colNoPMH,draw=none] coordinates {(3.40,{E1 no PMH})};
 \addplot[fill=colVAT,  draw=none] coordinates {(5.09,VAT)};
