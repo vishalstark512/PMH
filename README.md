@@ -71,7 +71,9 @@ PMH is validated across seven vision tasks, BERT fine-tuning, and a pretrained I
 ## Theoretical Contributions (Paper Sections 3–4)
 
 **Theorem 1 (ERM Encoder Non-Isometry):** For any encoder $\phi^*$ minimising empirical risk under a proper scoring rule, the path-length distortion in label-correlated nuisance directions satisfies:
+
 $$D(\phi^*, \sigma) \geq \sigma^2 \rho^2 C(P) / L^2 > 0$$
+
 This holds for *any* architecture, *any* dataset size, *any* proper scoring rule. The blind spot is structural, not empirical.
 
 **Corollary 4:** PGD adversarial training cannot close the blind spot and will in general *increase* clean-input TDI relative to ERM when Jacobian anisotropy increases — exactly what the experiments confirm.
