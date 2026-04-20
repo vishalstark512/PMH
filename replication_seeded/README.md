@@ -1,6 +1,6 @@
 # Replication Code — PMH
 
-> **Paper:** *Supervised Training is Geometrically Incomplete: A Theorem on Encoder Non-Isometry, the Jacobian Blind Spot, and its Minimal Fix via Gaussian Perturbation Matching*
+> **Paper:** *Supervised Learning Has a Necessary Geometric Blind Spot: Theory, Consequences, and Minimal Repair*
 > **Author:** Vishal Rajput · KU Leuven
 > **For the full repo overview see:** [`../README.md`](../README.md)
 
@@ -329,9 +329,8 @@ Several metrics are computed but not reported in the paper — see [NON_PAPER_CO
 
 ```bibtex
 @article{rajput2025supervised,
-  title   = {Supervised Training is Geometrically Incomplete: A Theorem on
-             Encoder Non-Isometry, the Jacobian Blind Spot, and its Minimal
-             Fix via Gaussian Perturbation Matching},
+  title   = {Supervised Learning Has a Necessary Geometric Blind Spot:
+             Theory, Consequences, and Minimal Repair},
   author  = {Rajput, Vishal},
   year    = {2025},
   note    = {Preprint. KU Leuven.}

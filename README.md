@@ -1,17 +1,27 @@
-# Supervised Training is Geometrically Incomplete
+# Supervised Learning Has a Necessary Geometric Blind Spot
 
 **Perturbation Manifold Harmonisation (PMH) — Official Code**
 
-*A Theorem on Encoder Non-Isometry, the Jacobian Blind Spot, and its Minimal Fix via Gaussian Perturbation Matching*
+*Theory, Consequences, and Minimal Repair*
 **Vishal Rajput · KU Leuven · (preprint)**
 
 ---
 
 ## Why Should You Care?
 
-Every vision model, language model, and graph neural network you train with standard supervised learning has a **mathematically provable structural flaw** that no amount of more data, bigger models, or standard augmentation can fix.
+Every vision model, language model, and graph neural network trained with supervised ERM inherits a **provable geometric constraint**: it must stay sensitive to label-correlated nuisance directions.
 
-This paper proves it and derives the simplest possible fix.
+This is a theorem about supervised learning itself, not a contingent weakness of specific architectures. Robustness failures are one consequence of this broader fact.
+
+### One Theorem, Four Consequences
+
+The paper's central claim unifies four results often treated separately:
+- Non-robust predictive features
+- Texture bias
+- Corruption fragility
+- Robustness-accuracy tradeoff
+
+In this framing, adversarial vulnerability is one corollary of a general theorem about representation geometry under supervised learning.
 
 ### The Flaw: The Geometric Blind Spot
 
@@ -27,7 +37,7 @@ The diagram below shows what this means geometrically:
 
 ![The Geometric Blind Spot](docs/images/blind_spot_concept.png)
 
-### Why Adversarial Training Makes It Worse
+### One Consequence: Why Adversarial Training Can Make Geometry Worse
 
 The natural response would be: "just use adversarial training (PGD) — it explicitly constrains Jacobian sensitivity." This is the **counterintuitive core result** of the paper.
 
@@ -56,7 +66,7 @@ $$\mathcal{L}_{\text{PMH}} = \left\|\phi_\theta(x) - \phi_\theta(x + \delta)\rig
 
 Add this to your supervised loss with a cosine-warmup weight. That is the entire implementation change.
 
-**Why Gaussian noise specifically?** Proposition 5 proves it is the *unique* perturbation distribution that suppresses the full Jacobian Frobenius norm **uniformly across all input directions**. The Gaussian choice is not borrowed from denoising autoencoders or contrastive learning by analogy — it follows directly from a uniqueness proof.
+**Why Gaussian noise specifically?** Proposition 5 proves it is the *unique* isotropic perturbation distribution that suppresses the full Jacobian Frobenius norm **uniformly across all input directions**. The Gaussian choice is not borrowed from denoising autoencoders or contrastive learning by analogy; it follows from a uniqueness proof.
 
 > First-order Taylor expansion: $\mathcal{L}_{\text{PMH}} \approx \sigma^2 \|J_\phi\|_F^2$, exact as $\sigma \to 0$.
 
@@ -78,7 +88,15 @@ This holds for *any* architecture, *any* dataset size, *any* proper scoring rule
 
 **Corollary 4:** PGD adversarial training cannot close the blind spot and will in general *increase* clean-input TDI relative to ERM when Jacobian anisotropy increases — exactly what the experiments confirm.
 
-**Proposition 5 (Uniqueness of Gaussian):** Among all isotropic perturbation distributions $p(\delta)$, the isotropic Gaussian is the *unique* distribution such that $\mathbb{E}_\delta[\|\phi(x) - \phi(x+\delta)\|^2] \propto \|J_\phi\|_F^2$ uniformly across all input directions.
+**Proposition 5 (Uniqueness of Gaussian):** Among all isotropic perturbation distributions \(p(\delta)\), the isotropic Gaussian is the *unique* distribution satisfying:
+
+$$
+\mathbb{E}_{\delta}\!\left[\|\phi(x)-\phi(x+\delta)\|^2\right] \propto \|J_{\phi}\|_F^2
+$$
+
+uniformly across all input directions.
+
+Plain-text fallback: `E_delta[ ||phi(x)-phi(x+delta)||^2 ] is proportional to ||J_phi||_F^2` for every direction only under isotropic Gaussian noise.
 
 ---
 
@@ -279,9 +297,8 @@ Each task folder contains a dedicated README with training commands, evaluation 
 
 ```bibtex
 @article{rajput2025supervised,
-  title   = {Supervised Training is Geometrically Incomplete:
-             A Theorem on Encoder Non-Isometry, the Jacobian Blind Spot,
-             and its Minimal Fix via Gaussian Perturbation Matching},
+  title   = {Supervised Learning Has a Necessary Geometric Blind Spot:
+             Theory, Consequences, and Minimal Repair},
   author  = {Rajput, Vishal},
   year    = {2025},
   note    = {Preprint. KU Leuven, Belgium.}
