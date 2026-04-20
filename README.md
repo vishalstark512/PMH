@@ -88,15 +88,13 @@ This holds for *any* architecture, *any* dataset size, *any* proper scoring rule
 
 **Corollary 4:** PGD adversarial training cannot close the blind spot and will in general *increase* clean-input TDI relative to ERM when Jacobian anisotropy increases — exactly what the experiments confirm.
 
-**Proposition 5 (Uniqueness of Gaussian):** Among all isotropic perturbation distributions \(p(\delta)\), the isotropic Gaussian is the *unique* distribution satisfying:
+**Proposition 5 (Uniqueness of Gaussian):** Among all isotropic perturbation distributions $p(\delta)$, the isotropic Gaussian is the *unique* distribution satisfying:
 
 $$
 \mathbb{E}_{\delta}\!\left[\|\phi(x)-\phi(x+\delta)\|^2\right] \propto \|J_{\phi}\|_F^2
 $$
 
 uniformly across all input directions.
-
-Plain-text fallback: `E_delta[ ||phi(x)-phi(x+delta)||^2 ] is proportional to ||J_phi||_F^2` for every direction only under isotropic Gaussian noise.
 
 ---
 

@@ -31,7 +31,7 @@ def make_figure(out_path: str) -> None:
         "Pretrained": "#707070",  # dark gray
     }
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.5, 7.5), gridspec_kw={"wspace": 0.15})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.5, 8.3), gridspec_kw={"wspace": 0.15})
     fig.suptitle("PMH Robustness Across All 9 Tasks — Replication Results", fontsize=24, y=0.98)
 
     # Left panel plotting
@@ -53,7 +53,7 @@ def make_figure(out_path: str) -> None:
     ax1.set_ylim(0, 102)
     ax1.set_ylabel("Metric value (%)", fontsize=15)
     ax1.set_xticks(x)
-    ax1.set_xticklabels(vision_labels, rotation=28, ha="right", fontsize=12)
+    ax1.set_xticklabels(vision_labels, rotation=22, ha="right", fontsize=11)
     ax1.grid(axis="y", alpha=0.35)
     ax1.legend(loc="upper center", ncol=3, fontsize=13, frameon=True)
 
@@ -94,13 +94,14 @@ def make_figure(out_path: str) -> None:
 
     fig.text(
         0.5,
-        0.03,
+        0.015,
         "All values from replication_seeded/artifacts/results/. T08 BERT TDI from semantic_tdi_results.json. "
         "T09 TDI from tdi_pretrained_baseline.json.",
         ha="center",
-        fontsize=11,
+        fontsize=10,
     )
-    plt.tight_layout(rect=[0.02, 0.08, 0.98, 0.95])
+    # Explicit spacing avoids tight_layout clipping/overlap with rotated tick labels and footer.
+    fig.subplots_adjust(left=0.06, right=0.985, top=0.90, bottom=0.20, wspace=0.15)
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     fig.savefig(out_path, dpi=180)
