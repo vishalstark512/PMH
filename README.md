@@ -1,4 +1,4 @@
-# Supervised Learning Has a Necessary Geometric Blind Spot
+# Supervised Learning Has a Necessary Geometric Blind Spot: Theory, Consequences, and Minimal Repair
 
 **Perturbation Manifold Harmonisation (PMH) — Official Code**
 
