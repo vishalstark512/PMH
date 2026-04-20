@@ -1,9 +1,9 @@
 # Replication Results vs Paper
 
-Full comparison of reproduced numbers against the published values in the ICML 2025 submission.
+Full comparison of reproduced numbers against the published values in the paper.
 
 **Convention:** `Δ = replication − paper`. Positive = we beat the paper; negative = we are below.
-All paper numbers are sourced from the ICML 2025 submission (preprint).
+All paper numbers are sourced from the preprint.
 
 ---
 
@@ -21,7 +21,7 @@ Replication headline metrics (seed 42); **bold** = best *among the three columns
 | T06 | Re-ID (Market-1501) | Avg-shift rank-1 | 43.02% | **65.80%** | 63.74% | **VAT** best |
 | T07 | Chest X-Ray | Worst-shift acc | 0.625 | 0.731 | **0.825** | PMH best |
 
-Original ICML table had different headline definitions (e.g. T04 as older L6 column, T05/T06 as paper-baseline story); the paper Table 3 is now aligned to `replication_seeded/artifacts`.
+Original table had different headline definitions (e.g. T04 as older L6 column, T05/T06 as paper-baseline story); the paper Table 3 is now aligned to `replication_seeded/artifacts`.
 
 ---
 

@@ -1,4 +1,4 @@
-# Replication Code — PMH (ICML 2025)
+# Replication Code — PMH
 
 > **Paper:** *Supervised Training is Geometrically Incomplete: A Theorem on Encoder Non-Isometry, the Jacobian Blind Spot, and its Minimal Fix via Gaussian Perturbation Matching*
 > **Author:** Vishal Rajput · KU Leuven
@@ -334,6 +334,6 @@ Several metrics are computed but not reported in the paper — see [NON_PAPER_CO
              Fix via Gaussian Perturbation Matching},
   author  = {Rajput, Vishal},
   year    = {2025},
-  note    = {Preprint. ICML 2025 submission. KU Leuven.}
+  note    = {Preprint. KU Leuven.}
 }
 ```

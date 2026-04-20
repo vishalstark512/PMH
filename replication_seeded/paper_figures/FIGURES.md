@@ -1,6 +1,6 @@
 # Paper Figures
 
-All 12 figures from the ICML 2025 submission. The TikZ/pgfplots source files (`.tex`) are not included in this repo since they require a full LaTeX installation to render. Instead, the pre-computed PNG result plots — which feed those figures — are committed under `artifacts/results/` and linked below.
+All 12 figures from the paper. The TikZ/pgfplots source files (`.tex`) are not included in this repo since they require a full LaTeX installation to render. Instead, the pre-computed PNG result plots — which feed those figures — are committed under `artifacts/results/` and linked below.
 
 ---
 

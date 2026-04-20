@@ -3,7 +3,7 @@
 **Perturbation Manifold Harmonisation (PMH) — Official Code**
 
 *A Theorem on Encoder Non-Isometry, the Jacobian Blind Spot, and its Minimal Fix via Gaussian Perturbation Matching*
-**Vishal Rajput · KU Leuven · ICML 2025 (preprint)**
+**Vishal Rajput · KU Leuven**
 
 ---
 
@@ -282,7 +282,7 @@ Each task folder contains a dedicated README with training commands, evaluation 
              and its Minimal Fix via Gaussian Perturbation Matching},
   author  = {Rajput, Vishal},
   year    = {2025},
-  note    = {Preprint. ICML 2025 submission. KU Leuven, Belgium.}
+  note    = {Preprint. KU Leuven, Belgium.}
 }
 ```
 
